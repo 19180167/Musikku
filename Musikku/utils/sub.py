@@ -9,7 +9,7 @@ def ken(func):
     async def wrapper(_, message: Message):
         user_id = message.from_user.id
         user_name = message.from_user.first_name
-        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+        rpk = f"[{user_name}](tg://user?id={str(user_id)})"
         if not config.MUST_JOIN:  # Not compulsory
             return
         try:
@@ -17,7 +17,7 @@ def ken(func):
                 await app.get_chat_member(config.MUST_JOIN, message.from_user.id)
             except UserNotParticipant:
                 if config.MUST_JOIN.isalpha():
-                    link = "https://t.me/" + config.MUST_JOIN
+                    link = f"https://t.me/{config.MUST_JOIN}"
                 else:
                     chat_info = await app.get_chat(config.MUST_JOIN)
                     chat_info.invite_link

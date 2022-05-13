@@ -54,7 +54,7 @@ async def init():
         pass
     await app.start()
     for all_module in ALL_MODULES:
-        importlib.import_module("Musikku.plugins" + all_module)
+        importlib.import_module(f"Musikku.plugins{all_module}")
     LOGGER("Musikku.plugins").info(
         "Successfully Imported Modules "
     )
@@ -69,8 +69,6 @@ async def init():
             "[ERROR] - \n\nPlease turn on your Logger Group's Voice Call. Make sure you never close/end voice call in your log group"
         )
         sys.exit()
-    except:
-        pass
     await Musikku.decorators()
     LOGGER("Musikku").info("Musikku Music Bot Started Successfully")
     await idle()

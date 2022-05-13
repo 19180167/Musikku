@@ -28,7 +28,7 @@ STOP_COMMAND = get_command("STOP_COMMAND")
 )
 @AdminRightsCheck
 async def stop_music(cli, message: Message, _, chat_id):
-    if not len(message.command) == 1:
+    if len(message.command) != 1:
         return await message.reply_text(_["general_2"])
     await Musikku.stop_stream(chat_id)
     await message.reply_text(

@@ -50,13 +50,10 @@ async def ping_com(client, message: Message, _):
             except:
                 return await message.reply_text(_["cplay_4"])
     if await is_active_chat(chat_id):
-        got = db.get(chat_id)
-        if got:
+        if got := db.get(chat_id):
             send = await message.reply_text(_["queue_1"])
-            j = 0
             msg = ""
-            for x in got:
-                j += 1
+            for j, x in enumerate(got, start=1):
                 if j == 1:
                     msg += f'Currently Playing:\n\n🏷Title: {x["title"]}\nDur: {x["dur"]}\nBy: {x["by"]}\n\n'
                 elif j == 2:
